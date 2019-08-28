@@ -1,31 +1,24 @@
 package parkinglot;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import parkinglot.exceptions.InvalidTicketException;
-import parkinglot.exceptions.NoAvailableLotException;
 
 public class GraduateParkingBoy implements IParkingBoy {
 
   private final List<ParkingLot> parkingLots;
 
-  public GraduateParkingBoy(List<ParkingLot> parkingLots) {
-    this.parkingLots = parkingLots;
+  List<ParkingLot> getParkingLots() {
+    return parkingLots;
   }
 
-  @Override
-  public Ticket park(Car car) {
-    return tryPark(car).orElseThrow(NoAvailableLotException::new);
-  }
-
-  @Override
-  public Car getCar(Ticket ticket) {
-    return tryGetCar(ticket).orElseThrow(InvalidTicketException::new);
+  public GraduateParkingBoy(ParkingLot... parkingLots) {
+    this.parkingLots = Arrays.asList(parkingLots);
   }
 
   @Override
   public Optional<Ticket> tryPark(Car car) {
-    return parkingLots.stream()
+    return getParkingLots().stream()
         .filter(ParkingLot::hasAvailableLots)
         .findFirst()
         .map(parkingLot -> parkingLot.park(car));
@@ -33,7 +26,7 @@ public class GraduateParkingBoy implements IParkingBoy {
 
   @Override
   public Optional<Car> tryGetCar(Ticket ticket) {
-    return parkingLots.stream()
+    return getParkingLots().stream()
         .filter(parkingLot -> parkingLot.isValidTicket(ticket))
         .findFirst()
         .map(parkingLot -> parkingLot.getCar(ticket));

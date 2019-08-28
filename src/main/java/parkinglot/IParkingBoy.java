@@ -1,12 +1,18 @@
 package parkinglot;
 
 import java.util.Optional;
+import parkinglot.exceptions.InvalidTicketException;
+import parkinglot.exceptions.NoAvailableLotException;
 
 public interface IParkingBoy {
 
-  Ticket park(Car car);
+  default Ticket park(Car car) {
+    return tryPark(car).orElseThrow(NoAvailableLotException::new);
+  }
 
-  Car getCar(Ticket ticket);
+  default Car getCar(Ticket ticket) {
+    return tryGetCar(ticket).orElseThrow(InvalidTicketException::new);
+  }
 
   Optional<Ticket> tryPark(Car car);
 
