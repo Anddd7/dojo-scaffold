@@ -1,4 +1,4 @@
-package parkinglot;
+package parkinglot.resources;
 
 public class Ticket {
 

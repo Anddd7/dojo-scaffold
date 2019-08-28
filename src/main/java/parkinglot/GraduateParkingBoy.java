@@ -1,23 +1,18 @@
 package parkinglot;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
+import parkinglot.resources.Car;
+import parkinglot.resources.Ticket;
 
-public class GraduateParkingBoy implements IParkingBoy {
-
-  private final List<ParkingLot> parkingLots;
-
-  List<ParkingLot> getParkingLots() {
-    return parkingLots;
-  }
+public class GraduateParkingBoy extends AbstractParkingBoy implements ParkingBoy {
 
   public GraduateParkingBoy(ParkingLot... parkingLots) {
-    this.parkingLots = Arrays.asList(parkingLots);
+    super(Arrays.asList(parkingLots));
   }
 
   @Override
-  public Optional<Ticket> tryPark(Car car) {
+  protected Optional<Ticket> tryPark(Car car) {
     return getParkingLots().stream()
         .filter(ParkingLot::hasAvailableLots)
         .findFirst()
@@ -25,7 +20,7 @@ public class GraduateParkingBoy implements IParkingBoy {
   }
 
   @Override
-  public Optional<Car> tryGetCar(Ticket ticket) {
+  protected Optional<Car> tryGetCar(Ticket ticket) {
     return getParkingLots().stream()
         .filter(parkingLot -> parkingLot.isValidTicket(ticket))
         .findFirst()

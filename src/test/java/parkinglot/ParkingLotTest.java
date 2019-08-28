@@ -4,6 +4,8 @@ import parkinglot.exceptions.InvalidTicketException;
 import parkinglot.exceptions.NoAvailableLotException;
 import org.junit.Assert;
 import org.junit.Test;
+import parkinglot.resources.Car;
+import parkinglot.resources.Ticket;
 
 public class ParkingLotTest {
 

@@ -4,11 +4,13 @@ import java.util.HashMap;
 import java.util.Map;
 import parkinglot.exceptions.InvalidTicketException;
 import parkinglot.exceptions.NoAvailableLotException;
+import parkinglot.resources.Car;
+import parkinglot.resources.Ticket;
 
 public class ParkingLot {
 
   private final int capacity;
-  private Map<Ticket, Car> ticketCarMap = new HashMap<>();
+  private final Map<Ticket, Car> ticketCarMap = new HashMap<>();
 
   public ParkingLot(int capacity) {
     if (capacity < 1) {
