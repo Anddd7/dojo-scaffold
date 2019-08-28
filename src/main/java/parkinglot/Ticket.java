@@ -1,4 +1,4 @@
-package exceptions;
+package parkinglot;
 
 public class Ticket {
 

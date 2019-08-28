@@ -1,10 +1,7 @@
 package parkinglot;
 
-import exceptions.Car;
-import exceptions.InvalidTicketException;
-import exceptions.NoAvailableLotException;
-import exceptions.ParkingLot;
-import exceptions.Ticket;
+import parkinglot.exceptions.InvalidTicketException;
+import parkinglot.exceptions.NoAvailableLotException;
 import org.junit.Assert;
 import org.junit.Test;
 

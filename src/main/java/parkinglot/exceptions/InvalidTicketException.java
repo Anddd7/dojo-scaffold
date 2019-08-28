@@ -1,8 +1,8 @@
-package exceptions;
+package parkinglot.exceptions;
 
 public class InvalidTicketException extends RuntimeException {
 
   public InvalidTicketException() {
-    super("exceptions.Ticket is invalid in this exceptions.ParkingLot");
+    super("parkinglot.Ticket is invalid in this parkinglot.ParkingLot");
   }
 }

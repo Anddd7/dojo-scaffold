@@ -1,8 +1,8 @@
-package exceptions;
+package parkinglot.exceptions;
 
 public class NoAvailableLotException extends RuntimeException {
 
   public NoAvailableLotException() {
-    super("No available lot in this exceptions.ParkingLot");
+    super("No available lot in this parkinglot.ParkingLot");
   }
 }
