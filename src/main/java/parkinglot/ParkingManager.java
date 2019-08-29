@@ -14,6 +14,11 @@ public final class ParkingManager extends SmartParkingBoy implements ParkingBoy 
     this.parkingBoys = parkingBoys;
   }
 
+  public ParkingManager(List<ParkingBoy> parkingBoys, List<ParkingLot> parkingLots) {
+    super(parkingLots);
+    this.parkingBoys = parkingBoys;
+  }
+
   @Override
   protected Optional<Ticket> tryPark(Car car) {
     for (ParkingBoy parkingBoy : parkingBoys) {

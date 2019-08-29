@@ -1,6 +1,7 @@
 package parkinglot;
 
 import java.util.Comparator;
+import java.util.List;
 import java.util.Optional;
 import parkinglot.resources.Car;
 import parkinglot.resources.Ticket;
@@ -8,6 +9,10 @@ import parkinglot.resources.Ticket;
 public class SmartParkingBoy extends GraduateParkingBoy implements ParkingBoy {
 
   public SmartParkingBoy(ParkingLot... parkingLots) {
+    super(parkingLots);
+  }
+
+  public SmartParkingBoy(List<ParkingLot> parkingLots) {
     super(parkingLots);
   }
 

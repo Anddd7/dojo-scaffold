@@ -14,7 +14,7 @@ public class ParkingLot {
 
   public ParkingLot(int capacity) {
     if (capacity < 1) {
-      throw new IllegalArgumentException("parkinglot.ParkingLot should have at least 1 lot");
+      throw new IllegalArgumentException("ParkingLot should have at least 1 lot");
     }
     this.capacity = capacity;
   }
