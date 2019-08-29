@@ -29,6 +29,11 @@ public abstract class ParkingBoyBuilder {
     return this;
   }
 
+  public ParkingBoyBuilder parkingLot(ParkingLot parkingLot) {
+    parkingLots.add(parkingLot);
+    return this;
+  }
+
   abstract public ParkingBoy build();
 
   static class GraduateParkingBoyBuilder extends ParkingBoyBuilder {
@@ -62,8 +67,19 @@ public abstract class ParkingBoyBuilder {
       return this;
     }
 
+    @Override
+    public ParkingManagerBuilder parkingLot(ParkingLot parkingLot) {
+      super.parkingLot(parkingLot);
+      return this;
+    }
+
     public ParkingManagerBuilder parkingBoy(ParkingBoyBuilder builder) {
       parkingBoys.add(builder.build());
+      return this;
+    }
+
+    public ParkingManagerBuilder parkingBoy(ParkingBoy parkingBoy) {
+      parkingBoys.add(parkingBoy);
       return this;
     }
   }

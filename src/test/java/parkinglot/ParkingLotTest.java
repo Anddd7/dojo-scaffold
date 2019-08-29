@@ -1,9 +1,9 @@
 package parkinglot;
 
-import parkinglot.exceptions.InvalidTicketException;
-import parkinglot.exceptions.NoAvailableLotException;
 import org.junit.Assert;
 import org.junit.Test;
+import parkinglot.exceptions.InvalidTicketException;
+import parkinglot.exceptions.NoAvailableLotException;
 import parkinglot.resources.Car;
 import parkinglot.resources.Ticket;
 
@@ -68,5 +68,13 @@ public class ParkingLotTest {
     parkingLot.park(new Car());
 
     parkingLot.getCar(new Ticket());
+  }
+
+  public static ParkingLot FullParkingLotFixture = getFullParkingLotFixture();
+
+  private static ParkingLot getFullParkingLotFixture() {
+    ParkingLot parkingLot = new ParkingLot(1);
+    parkingLot.park(new Car());
+    return parkingLot;
   }
 }
