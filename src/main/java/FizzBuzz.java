@@ -1,12 +1,15 @@
 public class FizzBuzz {
 
   public String answer(int input) {
+    String result = "";
+
     if (input % 3 == 0) {
-      return "fizz";
+      result += "fizz";
     }
     if (input % 5 == 0) {
-      return "buzz";
+      result += "buzz";
     }
-    return String.valueOf(input);
+
+    return result.isEmpty() ? String.valueOf(input) : result;
   }
 }

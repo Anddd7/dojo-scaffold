@@ -13,7 +13,8 @@ public class FizzBuzzTest {
         Arguments.of(3, "fizz"),
         Arguments.of(6, "fizz"),
         Arguments.of(5, "buzz"),
-        Arguments.of(10, "buzz")
+        Arguments.of(10, "buzz"),
+        Arguments.of(15, "fizzbuzz")
     );
   }
 
