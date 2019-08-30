@@ -9,7 +9,9 @@ public class FizzBuzzTest {
 
   private static Stream<Arguments> provideValues() {
     return Stream.of(
-        Arguments.of(1, "1")
+        Arguments.of(1, "1"),
+        Arguments.of(3, "fizz"),
+        Arguments.of(6, "fizz")
     );
   }
 
