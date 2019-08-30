@@ -18,7 +18,8 @@ public class FizzBuzzTest {
         Arguments.of(13, "fizz"),
         Arguments.of(31, "fizz"),
         Arguments.of(56, "buzz"),
-        Arguments.of(58, "buzz")
+        Arguments.of(58, "buzz"),
+        Arguments.of(53, "fizzbuzz")
     );
   }
 
