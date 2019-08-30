@@ -11,7 +11,9 @@ public class FizzBuzzTest {
     return Stream.of(
         Arguments.of(1, "1"),
         Arguments.of(3, "fizz"),
-        Arguments.of(6, "fizz")
+        Arguments.of(6, "fizz"),
+        Arguments.of(5, "buzz"),
+        Arguments.of(10, "buzz")
     );
   }
 
