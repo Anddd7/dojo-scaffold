@@ -23,7 +23,7 @@ public class CanaryTest {
     List<Integer> doubled = numbers.stream().map(x -> x * 2).collect(toList());
     assertThat(doubled).isEqualTo(newArrayList(2, 4, 6, 8, 10));
 
-    String src = Files.toString(new File("src/test/java/CanaryTest.java"), UTF_8);
-    assertThat(src.length()).isEqualTo(954);
+    String src = Files.asCharSource(new File("src/test/java/CanaryTest.java"), UTF_8).read();
+    assertThat(src.length()).isEqualTo(936);
   }
 }
