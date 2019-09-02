@@ -1,9 +1,9 @@
 plugins {
-    id 'java'
+    id "java"
 }
 
-group 'org.codingdojo.kata'
-version '1.0-SNAPSHOT'
+group "org.codingdojo.kata"
+version "1.0-SNAPSHOT"
 
 sourceCompatibility = 1.8
 
@@ -15,12 +15,18 @@ test {
     useJUnitPlatform()
 }
 
+ext {
+    junitVersion = "5.5.1"
+    guavaVersion = "28.1-jre"
+    assertjVersion = "3.13.2"
+}
+
 dependencies {
-    implementation 'com.google.guava:guava:28.1-jre'
+    implementation "com.google.guava:guava:$guavaVersion"
 
-    testImplementation 'org.assertj:assertj-core:3.11.1'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
-    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.3.1'
+    testImplementation "org.assertj:assertj-core:$assertjVersion"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
+    testImplementation "org.junit.jupiter:junit-jupiter-params:$junitVersion"
 
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
 }
