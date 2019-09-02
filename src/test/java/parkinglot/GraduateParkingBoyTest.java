@@ -1,9 +1,10 @@
 package parkinglot;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static parkinglot.ParkingLotTest.FullParkingLotFixture;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import parkinglot.exceptions.InvalidTicketException;
 import parkinglot.exceptions.NoAvailableLotException;
 import parkinglot.factory.ParkingBoyBuilder;
@@ -21,8 +22,8 @@ public class GraduateParkingBoyTest {
 
     Ticket result = parkingBoy.park(car);
 
-    Assert.assertNotNull(result);
-    Assert.assertNotNull(first.getCar(result));
+    assertThat(result).isNotNull();
+    assertThat(first.getCar(result)).isNotNull();
   }
 
   @Test
@@ -34,18 +35,18 @@ public class GraduateParkingBoyTest {
 
     Ticket result = parkingBoy.park(car);
 
-    Assert.assertNotNull(result);
-    Assert.assertNotNull(second.getCar(result));
+    assertThat(result).isNotNull();
+    assertThat(second.getCar(result)).isNotNull();
   }
 
-  @Test(expected = NoAvailableLotException.class)
+  @Test
   public void should_receive_no_empty_lot_error_when_park_given_parking_boy_have_2_parking_lots_which_are_all_full() {
     ParkingLot first = FullParkingLotFixture;
     ParkingLot second = FullParkingLotFixture;
     ParkingBoy parkingBoy = ParkingBoyBuilder.graduate().parkingLot(first).parkingLot(second).build();
     Car car = new Car();
 
-    parkingBoy.park(car);
+    assertThrows(NoAvailableLotException.class, () -> parkingBoy.park(car));
   }
 
   @Test
@@ -56,15 +57,15 @@ public class GraduateParkingBoyTest {
 
     Car result = parkingBoy.getCar(ticket);
 
-    Assert.assertEquals(car, result);
+    assertThat(car).isEqualTo(result);
   }
 
-  @Test(expected = InvalidTicketException.class)
+  @Test
   public void should_receive_invalid_ticket_error_when_get_car_given_ticket_is_invalid_in_parking_boy() {
     ParkingBoy parkingBoy = ParkingBoyBuilder.graduate().parkingLot(1).parkingLot(1).build();
     Car car = new Car();
     parkingBoy.park(car);
 
-    parkingBoy.getCar(new Ticket());
+    assertThrows(InvalidTicketException.class, () -> parkingBoy.getCar(new Ticket()));
   }
 }

@@ -1,9 +1,10 @@
 package parkinglot;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static parkinglot.ParkingLotTest.FullParkingLotFixture;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import parkinglot.exceptions.InvalidTicketException;
 import parkinglot.exceptions.NoAvailableLotException;
 import parkinglot.factory.ParkingBoyBuilder;
@@ -11,8 +12,6 @@ import parkinglot.resources.Car;
 import parkinglot.resources.Ticket;
 
 public class ParkingManagerTest {
-
-
 
   @Test
   public void should_get_ticket_of_the_car_when_park_given_parking_manager_have_graduate_and_smart_with_available_lots() {
@@ -25,7 +24,7 @@ public class ParkingManagerTest {
 
     Ticket result = parkingManager.park(car);
 
-    Assert.assertNotNull(result);
+    assertThat(result).isNotNull();
   }
 
   @Test
@@ -39,7 +38,7 @@ public class ParkingManagerTest {
 
     Ticket result = parkingManager.park(car);
 
-    Assert.assertNotNull(result);
+    assertThat(result).isNotNull();
   }
 
   @Test
@@ -53,7 +52,7 @@ public class ParkingManagerTest {
 
     Ticket result = parkingManager.park(car);
 
-    Assert.assertNotNull(result);
+    assertThat(result).isNotNull();
   }
 
   @Test
@@ -67,10 +66,10 @@ public class ParkingManagerTest {
 
     Ticket result = parkingManager.park(car);
 
-    Assert.assertNotNull(result);
+    assertThat(result).isNotNull();
   }
 
-  @Test(expected = NoAvailableLotException.class)
+  @Test
   public void should_receive_no_empty_lot_error_when_park_given_parking_manager_and_its_parking_boys_have_no_available_lots() {
     ParkingBoy parkingManager = ParkingBoyBuilder.manager()
         .parkingLot(FullParkingLotFixture)
@@ -79,7 +78,7 @@ public class ParkingManagerTest {
         .build();
     Car car = new Car();
 
-    parkingManager.park(car);
+    assertThrows(NoAvailableLotException.class, () -> parkingManager.park(car));
   }
 
   @Test
@@ -94,7 +93,7 @@ public class ParkingManagerTest {
 
     Car result = parkingManager.getCar(ticket);
 
-    Assert.assertEquals(result, car);
+    assertThat(result).isEqualTo(car);
   }
 
   @Test
@@ -111,7 +110,7 @@ public class ParkingManagerTest {
 
     Car result = parkingManager.getCar(ticket);
 
-    Assert.assertEquals(result, car);
+    assertThat(result).isEqualTo(car);
   }
 
   @Test
@@ -128,7 +127,7 @@ public class ParkingManagerTest {
 
     Car result = parkingManager.getCar(ticket);
 
-    Assert.assertEquals(result, car);
+    assertThat(result).isEqualTo(car);
   }
 
   @Test
@@ -144,10 +143,10 @@ public class ParkingManagerTest {
 
     Car result = parkingManager.getCar(ticket);
 
-    Assert.assertEquals(result, car);
+    assertThat(result).isEqualTo(car);
   }
 
-  @Test(expected = InvalidTicketException.class)
+  @Test
   public void should_receive_invalid_ticket_error_when_get_car_given_ticket_is_invalid_any_of_parking_boys_or_parking_lots() {
     ParkingBoy parkingManager = ParkingBoyBuilder.manager()
         .parkingLot(1)
@@ -157,6 +156,6 @@ public class ParkingManagerTest {
     Car car = new Car();
     parkingManager.park(car);
 
-    parkingManager.getCar(new Ticket());
+    assertThrows(InvalidTicketException.class, () -> parkingManager.getCar(new Ticket()));
   }
 }

@@ -1,12 +1,12 @@
 package parkinglot.factory;
 
-import org.junit.Assert;
-import org.junit.Test;
+import static org.assertj.core.api.Assertions.assertThat;
+
+import org.junit.jupiter.api.Test;
 import parkinglot.GraduateParkingBoy;
 import parkinglot.ParkingBoy;
 import parkinglot.ParkingManager;
 import parkinglot.SmartParkingBoy;
-import parkinglot.factory.ParkingBoyBuilder;
 
 public class ParkingBoyBuilderTest {
 
@@ -17,7 +17,7 @@ public class ParkingBoyBuilderTest {
         .parkingLot(1)
         .build();
 
-    Assert.assertTrue(parkingBoy instanceof GraduateParkingBoy);
+    assertThat(parkingBoy instanceof GraduateParkingBoy).isTrue();
   }
 
   @Test
@@ -27,7 +27,7 @@ public class ParkingBoyBuilderTest {
         .parkingLot(1)
         .build();
 
-    Assert.assertTrue(parkingBoy instanceof SmartParkingBoy);
+    assertThat(parkingBoy instanceof SmartParkingBoy).isTrue();
   }
 
   @Test
@@ -40,6 +40,6 @@ public class ParkingBoyBuilderTest {
         .parkingBoy(ParkingBoyBuilder.smart().parkingLot(1))
         .build();
 
-    Assert.assertTrue(parkingBoy instanceof ParkingManager);
+    assertThat(parkingBoy instanceof ParkingManager).isTrue();
   }
 }
