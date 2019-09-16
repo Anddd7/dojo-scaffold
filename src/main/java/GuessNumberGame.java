@@ -1,13 +1,26 @@
 public class GuessNumberGame {
 
+  private static final int MAX_LENGTH = 4;
+
   public GuessNumberGame(String answer) {
+    verifyLengthOfAnswer(answer);
+    verifyDigitsOfAnswer(answer);
+  }
+
+  private void verifyDigitsOfAnswer(String answer) {
     for (char digit : answer.toCharArray()) {
-      if (digit < '0' || digit > '9') {
+      if (isDigit(digit)) {
         throw new IllegalArgumentException("Only allow digit");
       }
     }
+  }
 
-    if (answer.length() != 4) {
+  private boolean isDigit(char digit) {
+    return digit < '0' || digit > '9';
+  }
+
+  private void verifyLengthOfAnswer(String answer) {
+    if (answer.length() != MAX_LENGTH) {
       throw new IllegalArgumentException("Length should be 4");
     }
   }
