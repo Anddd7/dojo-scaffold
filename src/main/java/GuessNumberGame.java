@@ -1,13 +1,21 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public class GuessNumberGame {
 
   private static final int MAX_LENGTH = 4;
   private static final String UNFORTUNATELY = "Unfortunately";
-  private String answer;
+
+  private final Map<Character, Integer> digitWithIndexMap;
 
   public GuessNumberGame(String answer) {
-    this.answer = answer;
     verifyLengthOfAnswer(answer);
     verifyDigitsOfAnswer(answer);
+
+    digitWithIndexMap = new HashMap<>();
+    for (int i = 0; i < answer.length(); i++) {
+      digitWithIndexMap.put(answer.charAt(i), i);
+    }
   }
 
   private void verifyDigitsOfAnswer(String answer) {
@@ -32,14 +40,12 @@ public class GuessNumberGame {
     int matchedCount = 0;
     int containedCount = 0;
 
-    for (int i = 0; i < input.toCharArray().length; i++) {
-      for (int j = 0; j < answer.toCharArray().length; j++) {
-        if (input.charAt(i) == answer.charAt(j)) {
-          if (i == j) {
-            matchedCount++;
-          } else {
-            containedCount++;
-          }
+    for (int i = 0; i < input.length(); i++) {
+      if (digitWithIndexMap.containsKey(input.charAt(i))) {
+        if (digitWithIndexMap.get(input.charAt(i)) == i) {
+          matchedCount++;
+        } else {
+          containedCount++;
         }
       }
     }
