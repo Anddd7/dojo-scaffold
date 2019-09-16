@@ -6,5 +6,9 @@ public class GuessNumberGame {
         throw new IllegalArgumentException("Only allow digit");
       }
     }
+
+    if (answer.length() != 4) {
+      throw new IllegalArgumentException("Length should be 4");
+    }
   }
 }
