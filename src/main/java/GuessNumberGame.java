@@ -30,19 +30,24 @@ public class GuessNumberGame {
 
   public String guess(String input) {
     int matchedCount = 0;
+    int containedCount = 0;
 
     for (int i = 0; i < input.toCharArray().length; i++) {
       for (int j = 0; j < answer.toCharArray().length; j++) {
         if (input.charAt(i) == answer.charAt(j)) {
-          matchedCount++;
+          if (i == j) {
+            matchedCount++;
+          } else {
+            containedCount++;
+          }
         }
       }
     }
 
-    if (matchedCount == 0) {
+    if (matchedCount == 0 && containedCount == 0) {
       return UNFORTUNATELY;
     }
 
-    return matchedCount + "A0B";
+    return matchedCount + "A" + containedCount + "B";
   }
 }

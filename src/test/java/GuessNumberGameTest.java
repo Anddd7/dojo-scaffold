@@ -34,4 +34,11 @@ public class GuessNumberGameTest {
     assertThat(result).isEqualTo("1A0B");
   }
 
+  @Test
+  void should_return_0A1B_when_guess_given_input_is_only_contained_1_digit_at_different_position_of_answer() {
+    String result = new GuessNumberGame("1234").guess("4567");
+
+    assertThat(result).isEqualTo("0A1B");
+  }
+
 }
