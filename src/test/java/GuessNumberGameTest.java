@@ -47,4 +47,11 @@ public class GuessNumberGameTest {
 
     assertThat(result).isEqualTo("2A2B");
   }
+
+  @Test
+  void should_return_congratulation_when_guess_given_input_is_matched_all_digits_of_answer() {
+    String result = new GuessNumberGame("1234").guess("1234");
+
+    assertThat(result).isEqualTo("Congratulation");
+  }
 }

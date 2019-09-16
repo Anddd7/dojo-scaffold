@@ -5,6 +5,7 @@ public class GuessNumberGame {
 
   private static final int MAX_LENGTH = 4;
   private static final String UNFORTUNATELY = "Unfortunately";
+  public static final String CONGRATULATION = "Congratulation";
 
   private final Map<Character, Integer> digitWithIndexMap;
 
@@ -52,6 +53,10 @@ public class GuessNumberGame {
 
     if (matchedCount == 0 && containedCount == 0) {
       return UNFORTUNATELY;
+    }
+
+    if (matchedCount == MAX_LENGTH) {
+      return CONGRATULATION;
     }
 
     return matchedCount + "A" + containedCount + "B";
