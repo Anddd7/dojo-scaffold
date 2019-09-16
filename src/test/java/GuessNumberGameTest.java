@@ -41,4 +41,10 @@ public class GuessNumberGameTest {
     assertThat(result).isEqualTo("0A1B");
   }
 
+  @Test
+  void should_return_2A2B_when_guess_given_input_is_matched_2_digits_and_contained_2_digits_of_answer() {
+    String result = new GuessNumberGame("1234").guess("1243");
+
+    assertThat(result).isEqualTo("2A2B");
+  }
 }
