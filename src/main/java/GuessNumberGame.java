@@ -1,6 +1,7 @@
 public class GuessNumberGame {
 
   private static final int MAX_LENGTH = 4;
+  private static final String UNFORTUNATELY = "Unfortunately";
 
   public GuessNumberGame(String answer) {
     verifyLengthOfAnswer(answer);
@@ -23,5 +24,9 @@ public class GuessNumberGame {
     if (answer.length() != MAX_LENGTH) {
       throw new IllegalArgumentException("Length should be 4");
     }
+  }
+
+  public String guess(String input) {
+    return UNFORTUNATELY;
   }
 }
