@@ -2,8 +2,10 @@ public class GuessNumberGame {
 
   private static final int MAX_LENGTH = 4;
   private static final String UNFORTUNATELY = "Unfortunately";
+  private String answer;
 
   public GuessNumberGame(String answer) {
+    this.answer = answer;
     verifyLengthOfAnswer(answer);
     verifyDigitsOfAnswer(answer);
   }
@@ -27,6 +29,20 @@ public class GuessNumberGame {
   }
 
   public String guess(String input) {
-    return UNFORTUNATELY;
+    int matchedCount = 0;
+
+    for (int i = 0; i < input.toCharArray().length; i++) {
+      for (int j = 0; j < answer.toCharArray().length; j++) {
+        if (input.charAt(i) == answer.charAt(j)) {
+          matchedCount++;
+        }
+      }
+    }
+
+    if (matchedCount == 0) {
+      return UNFORTUNATELY;
+    }
+
+    return matchedCount + "A0B";
   }
 }

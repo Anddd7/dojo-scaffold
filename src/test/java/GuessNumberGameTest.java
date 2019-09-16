@@ -26,4 +26,12 @@ public class GuessNumberGameTest {
 
     assertThat(result).isEqualTo("Unfortunately");
   }
+
+  @Test
+  void should_return_1A0B_when_guess_given_input_is_only_matched_1_digit_at_same_position_of_answer() {
+    String result = new GuessNumberGame("1234").guess("1567");
+
+    assertThat(result).isEqualTo("1A0B");
+  }
+
 }
