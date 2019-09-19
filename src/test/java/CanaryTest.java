@@ -3,6 +3,7 @@ import static com.google.common.base.Charsets.UTF_8;
 import static com.google.common.collect.Lists.newArrayList;
 import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import com.google.common.io.Files;
 import java.io.File;
@@ -24,6 +25,13 @@ public class CanaryTest {
     assertThat(doubled).isEqualTo(newArrayList(2, 4, 6, 8, 10));
 
     String src = Files.asCharSource(new File("src/test/java/CanaryTest.java"), UTF_8).read();
-    assertThat(src.length()).isEqualTo(936);
+    assertThat(src.length()).isEqualTo(1188);
+  }
+
+  @Test
+  public void should_throw_exception() throws IOException {
+    assertThatThrownBy(() -> {
+      throw new RuntimeException();
+    }).isInstanceOf(RuntimeException.class);
   }
 }
