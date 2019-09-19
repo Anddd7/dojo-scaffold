@@ -20,8 +20,8 @@ public class CanaryTest {
       "1,3,4",
       "2,3,5"
   })
-  public void should_be_able_to_run_a_trivial_test_case(int first, int second, int reuslt) {
-    org.assertj.core.api.Assertions.assertThat(first + second).isEqualTo(reuslt);
+  public void should_be_able_to_run_a_trivial_test_case(int first, int second, int result) {
+    org.assertj.core.api.Assertions.assertThat(first + second).isEqualTo(result);
   }
 
   @Test
@@ -35,14 +35,14 @@ public class CanaryTest {
   }
 
   @Test
-  public void should_throw_exception_with_assertj() throws IOException {
+  public void should_throw_exception_with_assertj() {
     org.assertj.core.api.Assertions.assertThatThrownBy(() -> {
       throw new RuntimeException();
     }).isInstanceOf(RuntimeException.class);
   }
 
   @Test
-  public void should_throw_exception_with_junit() throws IOException {
+  public void should_throw_exception_with_junit() {
     Assertions.assertThrows(RuntimeException.class, () -> {
       throw new RuntimeException();
     });
