@@ -8,7 +8,7 @@ import com.aep.bootcamp.parkinglot.ParkingLotSupport;
 import java.util.Arrays;
 import java.util.List;
 
-public class GraduateParkingBoy implements ParkingBoy {
+public class GraduateParkingBoy implements ParkingBoyFrontier, ParkingBoySupport {
 
   private List<ParkingLotSupport> parkingLots;
 
@@ -32,5 +32,15 @@ public class GraduateParkingBoy implements ParkingBoy {
         .findFirst()
         .orElseThrow(InvalidTicketException::new)
         .pick(ticket);
+  }
+
+  @Override
+  public boolean hasAvailableLots() {
+    return parkingLots.stream().anyMatch(ParkingLotSupport::hasAvailableLots);
+  }
+
+  @Override
+  public boolean isValidTicket(Ticket ticket) {
+    return parkingLots.stream().anyMatch(parkingLot -> parkingLot.isValidTicket(ticket));
   }
 }

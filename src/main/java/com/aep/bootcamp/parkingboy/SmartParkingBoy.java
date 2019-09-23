@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
-public class SmartParkingBoy implements ParkingBoy {
+public class SmartParkingBoy implements ParkingBoyFrontier, ParkingBoySupport {
 
   private List<ParkingLotSupport> parkingLots;
 
@@ -32,6 +32,16 @@ public class SmartParkingBoy implements ParkingBoy {
         .findFirst()
         .orElseThrow(InvalidTicketException::new)
         .pick(ticket);
+  }
+
+  @Override
+  public boolean hasAvailableLots() {
+    return parkingLots.stream().anyMatch(ParkingLotSupport::hasAvailableLots);
+  }
+
+  @Override
+  public boolean isValidTicket(Ticket ticket) {
+    return parkingLots.stream().anyMatch(parkingLot -> parkingLot.isValidTicket(ticket));
   }
 }
 
