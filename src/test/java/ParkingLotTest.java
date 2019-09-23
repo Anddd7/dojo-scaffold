@@ -14,6 +14,15 @@ public class ParkingLotTest {
   }
 
   @Test
+  void should_return_ticket_when_park_given_parking_lot_have_parking_car_and_available_lots() {
+    ParkingLot parkingLot = new ParkingLot(2);
+    parkingLot.park(new Car());
+    Ticket result = parkingLot.park(new Car());
+
+    assertThat(result).isNotNull();
+  }
+
+  @Test
   void should_return_no_enough_space_error_when_park_given_parking_lot_have_no_available_lots() {
     ParkingLot parkingLot = new ParkingLot(1);
     parkingLot.park(new Car());
