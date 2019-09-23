@@ -15,12 +15,17 @@ public class ParkingLot {
     if (lots.size() >= capacity) {
       throw new NoAvailableLotsException();
     }
+
     Ticket ticket = new Ticket();
     lots.put(ticket, car);
     return ticket;
   }
 
   public Car pick(Ticket ticket) {
+    if(!lots.containsKey(ticket)){
+      throw new InvalidTicketException();
+    }
+
     return lots.get(ticket);
   }
 }

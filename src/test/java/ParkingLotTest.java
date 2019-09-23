@@ -32,4 +32,11 @@ public class ParkingLotTest {
     assertThat(result).isEqualTo(car);
   }
 
+  @Test
+  void should_return_invalid_ticket_error_when_pick_given_a_valid_ticket_of_parking_lot() {
+    ParkingLot parkingLot = new ParkingLot(1);
+    parkingLot.park(new Car());
+
+    assertThrows(InvalidTicketException.class, () -> parkingLot.pick(new Ticket()));
+  }
 }
