@@ -29,10 +29,14 @@ public class ParkingLot {
   }
 
   public Car pick(Ticket ticket) {
-    if (!lots.containsKey(ticket)) {
+    if (!isValidTicket(ticket)) {
       throw new InvalidTicketException();
     }
 
     return lots.get(ticket);
+  }
+
+  boolean isValidTicket(Ticket ticket) {
+    return lots.containsKey(ticket);
   }
 }

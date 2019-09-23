@@ -28,7 +28,7 @@ public class ParkingLotTest {
   }
 
   @Test
-  void should_return_no_enough_space_error_when_park_given_parking_lot_have_no_available_lots() {
+  void should_return_no_available_lots_error_when_park_given_parking_lot_have_no_available_lots() {
     ParkingLot parkingLot = new ParkingLot(1);
     parkingLot.park(new Car());
 
@@ -47,7 +47,7 @@ public class ParkingLotTest {
   }
 
   @Test
-  void should_return_invalid_ticket_error_when_pick_given_a_valid_ticket_of_parking_lot() {
+  void should_return_invalid_ticket_error_when_pick_given_an_invalid_ticket_of_parking_lot() {
     ParkingLot parkingLot = new ParkingLot(1);
     parkingLot.park(new Car());
 

@@ -16,4 +16,12 @@ public class GraduateParkingBoy {
         .orElseThrow(NoAvailableLotsException::new)
         .park(car);
   }
+
+  public Car pick(Ticket ticket) {
+    return parkingLots.stream()
+        .filter(parkingLot -> parkingLot.isValidTicket(ticket))
+        .findFirst()
+        .orElseThrow(InvalidTicketException::new)
+        .pick(ticket);
+  }
 }
