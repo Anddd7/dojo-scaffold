@@ -1,3 +1,5 @@
+package com.aep.bootcamp;
+
 public class InvalidTicketException extends RuntimeException{
 
   public InvalidTicketException() {
