@@ -8,6 +8,7 @@ import com.aep.bootcamp.InvalidTicketException;
 import com.aep.bootcamp.NoAvailableLotsException;
 import com.aep.bootcamp.Ticket;
 import com.aep.bootcamp.parkinglot.ParkingLot;
+import java.util.Collections;
 import org.junit.jupiter.api.Test;
 
 public class ParkingManagerTest {
@@ -17,6 +18,7 @@ public class ParkingManagerTest {
     ParkingBoySupport graduate = new GraduateParkingBoy(new ParkingLot(1));
     ParkingBoySupport smart = new SmartParkingBoy(new ParkingLot(1));
     ParkingBoyFrontier parkingManager = new ParkingManager(
+        Collections.emptyList(),
         graduate,
         smart
     );
@@ -33,6 +35,7 @@ public class ParkingManagerTest {
     ParkingBoySupport graduate = new GraduateParkingBoy(new ParkingLot(0));
     ParkingBoySupport smart = new SmartParkingBoy(new ParkingLot(1));
     ParkingBoyFrontier parkingManager = new ParkingManager(
+        Collections.emptyList(),
         graduate,
         smart
     );
@@ -49,6 +52,7 @@ public class ParkingManagerTest {
     ParkingBoySupport graduate = new GraduateParkingBoy(new ParkingLot(0));
     ParkingBoySupport smart = new SmartParkingBoy(new ParkingLot(0));
     ParkingBoyFrontier parkingManager = new ParkingManager(
+        Collections.emptyList(),
         graduate,
         smart
     );
@@ -57,10 +61,29 @@ public class ParkingManagerTest {
   }
 
   @Test
+  void should_return_ticket_of_parking_manager_when_park_given_only_parking_manager_has_available_lots() {
+    ParkingBoySupport graduate = new GraduateParkingBoy(new ParkingLot(0));
+    ParkingBoySupport smart = new SmartParkingBoy(new ParkingLot(0));
+    ParkingLot parkingLotOfParkingManager = new ParkingLot(1);
+    ParkingBoyFrontier parkingManager = new ParkingManager(
+        Collections.singletonList(parkingLotOfParkingManager),
+        graduate,
+        smart
+    );
+    Car car = new Car();
+
+    Ticket ticket = parkingManager.park(car);
+
+    assertThat(ticket).isNotNull();
+    assertThat(parkingLotOfParkingManager.pick(ticket)).isEqualTo(car);
+  }
+
+  @Test
   void should_return_the_car_when_pick_given_a_valid_ticket_and_car_is_parked_in_parking_manager() {
     ParkingBoySupport graduate = new GraduateParkingBoy(new ParkingLot(1));
     ParkingBoySupport smart = new SmartParkingBoy(new ParkingLot(1));
     ParkingBoyFrontier parkingManager = new ParkingManager(
+        Collections.emptyList(),
         graduate,
         smart
     );
@@ -78,6 +101,7 @@ public class ParkingManagerTest {
     ParkingBoySupport graduate = new GraduateParkingBoy(new ParkingLot(1));
     ParkingBoySupport smart = new SmartParkingBoy(new ParkingLot(1));
     ParkingBoyFrontier parkingManager = new ParkingManager(
+        Collections.emptyList(),
         graduate,
         smart
     );
