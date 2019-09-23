@@ -6,6 +6,11 @@ import org.junit.jupiter.api.Test;
 public class ParkingLotTest {
 
   @Test
+  void should_throw_error_when_build_parking_lot_given_lots_is_not_positive_integer() {
+    assertThrows(IllegalArgumentException.class, () ->  new ParkingLot(-1));
+  }
+
+  @Test
   void should_return_ticket_when_park_given_parking_lot_have_available_lots() {
     ParkingLot parkingLot = new ParkingLot(1);
     Ticket result = parkingLot.park(new Car());

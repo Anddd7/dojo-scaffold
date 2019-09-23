@@ -7,6 +7,9 @@ public class ParkingLot {
   private Map<Ticket, Car> lots;
 
   public ParkingLot(int capacity) {
+    if (capacity < 0) {
+      throw new IllegalArgumentException("Lots cannot be negative integer");
+    }
     this.capacity = capacity;
     this.lots = new HashMap<>(capacity);
   }
@@ -22,7 +25,7 @@ public class ParkingLot {
   }
 
   public Car pick(Ticket ticket) {
-    if(!lots.containsKey(ticket)){
+    if (!lots.containsKey(ticket)) {
       throw new InvalidTicketException();
     }
 
