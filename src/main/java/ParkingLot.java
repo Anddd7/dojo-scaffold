@@ -24,8 +24,12 @@ public class ParkingLot {
     return ticket;
   }
 
+  int getAvailableLots() {
+    return capacity - lots.size();
+  }
+
   boolean hasAvailableLots() {
-    return lots.size() < capacity;
+    return getAvailableLots() > 0;
   }
 
   public Car pick(Ticket ticket) {
