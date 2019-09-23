@@ -1,4 +1,6 @@
-import org.assertj.core.api.Assertions;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.junit.jupiter.api.Test;
 
 public class GraduateParkingBoyTest {
@@ -14,8 +16,8 @@ public class GraduateParkingBoyTest {
 
     Ticket ticket = graduateParkingBoy.park(car);
 
-    Assertions.assertThat(ticket).isNotNull();
-    Assertions.assertThat(first.pick(ticket)).isEqualTo(car);
+    assertThat(ticket).isNotNull();
+    assertThat(first.pick(ticket)).isEqualTo(car);
   }
 
   @Test
@@ -29,7 +31,17 @@ public class GraduateParkingBoyTest {
 
     Ticket ticket = graduateParkingBoy.park(car);
 
-    Assertions.assertThat(ticket).isNotNull();
-    Assertions.assertThat(second.pick(ticket)).isEqualTo(car);
+    assertThat(ticket).isNotNull();
+    assertThat(second.pick(ticket)).isEqualTo(car);
+  }
+
+  @Test
+  void should_return_no_available_lots_error_when_park_given_parking_boy_manages_2_parking_lot_without_available_lots() {
+    GraduateParkingBoy graduateParkingBoy = new GraduateParkingBoy(
+        new ParkingLot(0),
+        new ParkingLot(0)
+    );
+
+    assertThrows(NoAvailableLotsException.class, () -> graduateParkingBoy.park(new Car()));
   }
 }
