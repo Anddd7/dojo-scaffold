@@ -59,4 +59,15 @@ public class GraduateParkingBoyTest {
     assertThat(ticket).isNotNull();
     assertThat(result).isEqualTo(car);
   }
+
+  @Test
+  void should_return_invalid_ticket_error_when_pick_given_an_invalid_ticket() {
+    GraduateParkingBoy graduateParkingBoy = new GraduateParkingBoy(
+        new ParkingLot(1),
+        new ParkingLot(1)
+    );
+    graduateParkingBoy.park(new Car());
+
+    assertThrows(InvalidTicketException.class, () -> graduateParkingBoy.pick(new Ticket()));
+  }
 }
