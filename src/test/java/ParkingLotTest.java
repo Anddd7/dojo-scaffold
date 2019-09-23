@@ -21,4 +21,15 @@ public class ParkingLotTest {
     assertThrows(NoAvailableLotsException.class, () -> parkingLot.park(new Car()));
   }
 
+  @Test
+  void should_return_the_car_when_pick_given_a_valid_ticket_of_parking_lot_which_parked_the_car() {
+    ParkingLot parkingLot = new ParkingLot(1);
+    Car car = new Car();
+    Ticket ticket = parkingLot.park(car);
+
+    Car result = parkingLot.pick(ticket);
+
+    assertThat(result).isEqualTo(car);
+  }
+
 }
