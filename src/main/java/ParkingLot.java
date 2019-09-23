@@ -15,13 +15,17 @@ public class ParkingLot {
   }
 
   public Ticket park(Car car) {
-    if (lots.size() >= capacity) {
+    if (!hasAvailableLots()) {
       throw new NoAvailableLotsException();
     }
 
     Ticket ticket = new Ticket();
     lots.put(ticket, car);
     return ticket;
+  }
+
+  boolean hasAvailableLots() {
+    return lots.size() < capacity;
   }
 
   public Car pick(Ticket ticket) {
